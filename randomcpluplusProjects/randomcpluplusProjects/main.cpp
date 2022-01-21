@@ -1,102 +1,94 @@
-/*#include <iostream>
-#include <vector>
-#include "matrices.h"
-#include "default.h"
-using namespace std;
-
-//vector<int> SADofVect(vector<int> vect1, vector<int>vect2);
-
-
-//this program calculates the SAD8x8 for a frame of size 64x64 and print the values of the SAD to a Vector
-int main()
-{
-const int height = 32;
-const int width = 32;
-int frame1[height][width];
-int frame2[height][width];
-
-//generate random 64x64x arrays
-rand32x32Array(frame1);
-rand32x32Array(frame2);
-
-//temporal blocks block8x8_frame1 and block8x8_frame2
-vector<int>frame1Vector;
-vector<int>frame2Vector;
-
-
-///////////////////////////////////////////////////////
-//vector to store the SAD results
-vector<int>sumM;
-
-//loop through the number of blocks from (0 to height/8) and (from 0 to width/8)
-for (int block8x8Rowindex = 0; block8x8Rowindex < height; block8x8Rowindex += 8)
-{
-for (int block8x8Colindex = 0; block8x8Colindex < width; block8x8Colindex += 8)
-{
-//put the curretn 8x8 block in a temporal 8x8 block in order to use it to calculate the SAD
-for (int row = block8x8Rowindex; row < (block8x8Rowindex + 8); row++)
-{
-for (int column = block8x8Colindex; column < (block8x8Colindex + 8); column++)
-{
-frame1Vector.push_back(frame1[row][column]);
-frame2Vector.push_back(frame2[row][column]);
-}
-}
-}
-}
-//calulate the SAD of 8x8 block for whole frame in a form of vector and return the result as a vector
-sumM = SADofVect(frame1Vector, frame2Vector);
-////////////////////////////////////////////////////////////////
-
-
-
-//print the vector values
-for (size_t i = 0; i < sumM.size(); i++)
-{
-cout << sumM[i] << "\t";
-}
-cout << endl;
-
-system("pause");
-return 0;
-}
-*/
-
 #include <iostream>
-#include <vector>
-#include "matrices.h"
-#include "default.h"
+#include <iomanip> // pour setprecision()
 using namespace std;
 
-#include <iostream>
-using namespace std;
+//problem analysis:
+//* what are the inputs,
+//* does the program require user interation
+//* does the program manipulates data
+//* what are the outputs
+
+//when creating a function always start by defining the prototype inputs and outputs.
+//* Each function should only do one thing.
+//* what are the inputs of the function (with types),
+//* what is the outputs of the function (return one value, several values, dosn't return a thing).
+//* does the function modify the inputs or not (passage par copie or par reference)?
 
 int main()
-{
-	const int frameNumber = 300;
-	int stepSize_I = 32;
-	int stepSize_TMVP = 4;
+{	
+	// Réduire le format d'affichage
+	cout << setprecision(4);
 
-	cout << "StepSize I = " << stepSize_I << endl;
-	for (int i = 0; i < frameNumber; ++i)
+	// Paramètres
+	double taux_croissance_lapins(0.3);
+	double taux_attaque(0.01);
+	double taux_croissance_renards(0.008);
+	double taux_mortalite(0.1);
+	int duree(50);
+
+	double renards_i(0.0);
+	double lapins_i(0.0);
+
+	/*****************************************************
+	* Compléter le code à partir d'ici
+	*****************************************************/
+
+	// ===== PARTIE 1 =====
+	// Saisie des populations initiales
+
+	do
 	{
-		if ((i % stepSize_I) == 0)
-		{
-			cout << i << "\t";
-		}
+		cout << "Combien de renards au départ (>= 2) ? ";
+		cin >> renards_i;
+	} while (renards_i < 2.0);
+
+	do
+	{
+	cout << "Combien de lapins au départ  (>= 5) ? ";
+	cin >> lapins_i;
+	} while (lapins_i < 5.0);
+
+	// ===== PARTIE 2 =====
+	// Première simulation
+	cout << endl << "***** Le taux d'attaque vaut " << taux_attaque * 100 << "%" << endl;
+	double nb_lapins = lapins_i;
+	double nb_renards = renards_i;
+
+	for (int i = 1; i <= duree; ++i)
+	{
+		nb_lapins *= (1.0 + taux_croissance_lapins - taux_attaque * nb_renards);
+		if (nb_lapins < 0)
+			nb_lapins = 0;
+
+		nb_renards *= (1.0 + taux_attaque * nb_lapins * taux_croissance_renards - taux_mortalite);
+		if (nb_renards < 0)
+			nb_renards = 0;
+
+		cout << "Après " << i << " mois, il y a " << nb_lapins << " lapins et " << nb_renards << " renards" << endl;
 	}
-	cout << endl;
+
+	
+
+	// ===== PARTIE 3 =====
+	// Variation du taux d'attaque
 	cout << endl;
 
-	cout << "StepSize NoTMVP = " << stepSize_TMVP << endl;
-	for (int i = 0; i < frameNumber; ++i)
-	{
-		if ((i % stepSize_TMVP) == 0)
-		{
-			cout << ++i << "\t";
-		}
-	}
-	cout << endl;
+	cout << "taux d'attaque au départ en % (entre 0.5 et 6) ? ";
+
+	cout << "taux d'attaque à la fin  en % (entre ";
+	cout << " et 6) ? ";
+
+	cout << "Les renards ont été en voie d'extinction" << endl;
+	cout << "mais la population est remontée ! Ouf !" << endl;
+	cout << "et les renards ont disparu :-(" << endl;
+	cout << "Les lapins ont été en voie d'extinction" << endl;
+	cout << "mais la population est remontée ! Ouf !" << endl;
+	cout << "et les lapins ont disparu :-(" << endl;
+	cout << "Les lapins et les renards ont des populations stables." << endl;
+
+	/*******************************************
+	* Ne rien modifier après cette ligne.
+	*******************************************/
 
 
 	system("pause");

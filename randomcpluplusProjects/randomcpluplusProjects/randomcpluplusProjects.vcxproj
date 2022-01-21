@@ -145,7 +145,7 @@
     <ClCompile Include="default.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matrices.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h" />
