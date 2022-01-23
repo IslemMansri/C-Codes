@@ -50,11 +50,11 @@ int main()
 
 	// ===== PARTIE 2 =====
 	// Première simulation
-	std::cout << endl << "***** Le taux d'attaque vaut " << taux_attaque * 100 << "%" << endl;
-	double nb_lapins = lapins_i;
-	double nb_renards = renards_i;
+	//std::cout << endl << "***** Le taux d'attaque vaut " << taux_attaque * 100 << "%" << endl;
+	//double nb_lapins = lapins_i;
+	//double nb_renards = renards_i;
 
-	double nb_lapin_previous = lapins_i;	//this variable is defined in order to be used to calculate nb_renard based on the previous value of nb_lapin
+	//double nb_lapin_previous = lapins_i;	//this variable is defined in order to be used to calculate nb_renard based on the previous value of nb_lapin
 	//for (int i = 1; i <= duree; ++i)
 	//{
 	//	nb_lapins *= (1.0 + taux_croissance_lapins - taux_attaque * nb_renards);
@@ -91,35 +91,41 @@ int main()
 		std::cout << " et 6) ? ";
 		cin >> taux_attaque_final;
 		taux_attaque_final /= 100;
-	} while (taux_attaque_final < taux_attaque && taux_attaque_final > (6.0 / 100));
-
-	for (int taux = 1; taux < taux_attaque_final; taux += 0.1)
+	} while (taux_attaque_final < taux_attaque || taux_attaque_final > (6.0 / 100));
+	cout << endl;
+	
+	for (double taux = taux_attaque; taux < taux_attaque_final; taux += 0.01)
 	{	
-		cout << "***** Le taux d’attaque vaut " << taux << "%" << endl;
+		double nb_lapins = lapins_i;
+		double nb_renards = renards_i;
+
+		double nb_lapin_previous = lapins_i;	//this variable is defined in order to be used to calculate nb_renard based on the previous value of nb_lapin
+
+		cout << "***** Le taux d’attaque vaut " << taux * 100 << "%" << endl;
 		bool is_number_lapins_below_five = false;
 		bool is_number_lapins_below_two = false;
+		bool is_number_lapins_below_five_and_numberof_lapinsabove5 = false;
 
 		bool is_number_ranards_below_five = false;
 		bool is_number_renards_below_two = false;
-
+		bool is_number_lapins_below_five_and_numberof_renardsabove5 = false;
 
 		int j = 0;
 		//debut de boucle for
 		for (int i = 1; i <= duree; ++i)
 		{
 			j = i;
-			nb_lapins *= (1.0 + taux_croissance_lapins - taux_attaque * nb_renards);
+			nb_lapins *= (1.0 + taux_croissance_lapins - taux * nb_renards);
 			if (nb_lapins < 0)
 				nb_lapins = 0;
 
 			if (nb_lapins < 5)
 			{
-				std::cout << "Les lapins ont été en voie d'extinction" << endl;
 				is_number_lapins_below_five = true;
 			}
 			if (is_number_lapins_below_five && nb_lapins > 5)
 			{
-				std::cout << "mais la population est remontée ! Ouf !" << endl;
+				is_number_lapins_below_five_and_numberof_lapinsabove5 = true;
 			}
 
 			if (nb_lapins < 2)
@@ -129,19 +135,18 @@ int main()
 			}
 
 
-			nb_renards *= (1.0 + taux_attaque * nb_lapin_previous * taux_croissance_renards - taux_mortalite);
+			nb_renards *= (1.0 + taux * nb_lapin_previous * taux_croissance_renards - taux_mortalite);
 			if (nb_renards < 0)
 				nb_renards = 0;
 
 			if (nb_renards < 5)
 			{
-				std::cout << "Les renards ont été en voie d'extinction" << endl;
 				is_number_ranards_below_five = true;
 			}
 
 			if (is_number_ranards_below_five && nb_renards > 5)
 			{
-				std::cout << "mais la population est remontée ! Ouf !" << endl;
+				is_number_lapins_below_five_and_numberof_renardsabove5 = true;
 			}
 			if (nb_renards < 2)
 			{
@@ -149,7 +154,7 @@ int main()
 				is_number_renards_below_two = true;
 			}
 
-			if ((nb_lapins && nb_renards) == 0)
+			if (((nb_lapins && nb_renards) == 0) && (is_number_renards_below_two) && (is_number_lapins_below_two))
 			{
 				break;
 			}
@@ -159,10 +164,15 @@ int main()
 
 		std::cout << "Après " << j << " mois, il y a " << nb_lapins << " lapins et " << nb_renards << " renards" << endl;
 
-		//display alert message pour les lapins
-		if (is_number_lapins_below_two == true)
+		//dispaly alert messages when low nomber five
+		if (is_number_ranards_below_five == true)
 		{
-			std::cout << "et les lapins ont disparu :-(" << endl;
+			std::cout << "Les renards ont été en voie d'extinction" << endl;
+		}
+
+		if (is_number_lapins_below_five_and_numberof_renardsabove5 == true)
+		{
+			std::cout << "mais la population est remontée ! Ouf !" << endl;
 		}
 
 		//display alert message pour les renards
@@ -170,12 +180,32 @@ int main()
 		{
 			std::cout << "et les renards ont disparu :-(" << endl;
 		}
+		
+		//dispaly alert messages when low nomber five
+		if (is_number_lapins_below_five == true)
+		{
+			std::cout << "Les lapins ont été en voie d'extinction" << endl;
+		}
+
+		if (is_number_lapins_below_five_and_numberof_lapinsabove5 == true)
+		{
+			std::cout << "mais la population est remontée ! Ouf !" << endl;
+		}
+
+		//display alert message pour les lapins
+		if (is_number_lapins_below_two == true)
+		{
+			std::cout << "et les lapins ont disparu :-(" << endl;
+		}
+
 
 		//display alert message
 		if (!(is_number_lapins_below_five) && !(is_number_ranards_below_five) && !(is_number_lapins_below_two) && !(is_number_renards_below_two))
 		{
 			std::cout << "Les lapins et les renards ont des populations stables." << endl;
 		}
+
+		cout << endl;
 	}
 
 

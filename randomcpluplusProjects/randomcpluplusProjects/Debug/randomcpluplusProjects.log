@@ -1,4 +1,3 @@
 ﻿  main.cpp
-c:\dev\githubclone\c-codes\randomcpluplusprojects\randomcpluplusprojects\main.cpp(96): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
   randomcpluplusProjects.vcxproj -> C:\Dev\GitHubClone\C-Codes\randomcpluplusProjects\Debug\randomcpluplusProjects.exe
   randomcpluplusProjects.vcxproj -> C:\Dev\GitHubClone\C-Codes\randomcpluplusProjects\Debug\randomcpluplusProjects.pdb (Full PDB)
