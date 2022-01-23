@@ -60,10 +60,11 @@ int main()
 		if (nb_lapins < 0)
 			nb_lapins = 0;
 
-		nb_renards *= (1.0 + taux_attaque * nb_lapins * taux_croissance_renards - taux_mortalite);
+		nb_renards *= (1.0 + taux_attaque * lapins_i * taux_croissance_renards - taux_mortalite);
 		if (nb_renards < 0)
 			nb_renards = 0;
 
+		lapins_i = nb_lapins; //this is so important in order to get the same values as in the example.
 		cout << "Après " << i << " mois, il y a " << nb_lapins << " lapins et " << nb_renards << " renards" << endl;
 	}
 
