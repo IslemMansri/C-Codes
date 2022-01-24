@@ -142,12 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="coursera.cpp" />
     <ClCompile Include="default.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matrices.cpp" />
     <ClCompile Include="resources.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="coursera.h" />
     <ClInclude Include="default.h" />
     <ClInclude Include="matrices.h" />
   </ItemGroup>

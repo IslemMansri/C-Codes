@@ -27,12 +27,18 @@
     <ClCompile Include="resources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="coursera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="default.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="matrices.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coursera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
