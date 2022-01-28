@@ -125,7 +125,7 @@ vector<int> SADofVect(vector<int> vect1, vector<int>vect2)
 	return sumM;
 }
 
-//generate random values for matrix od size HD frame 640x360
+//generate random values for matrix of size 32x32
 void rand32x32Array(int mat[][32], int rows)
 {
 	for (int i = 0; i < rows; ++i)

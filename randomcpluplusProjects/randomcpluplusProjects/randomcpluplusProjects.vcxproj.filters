@@ -24,10 +24,10 @@
     <ClCompile Include="matrices.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resources.cpp">
+    <ClCompile Include="coursera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coursera.cpp">
+    <ClCompile Include="code_snippets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

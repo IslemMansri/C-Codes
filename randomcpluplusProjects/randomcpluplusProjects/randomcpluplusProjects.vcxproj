@@ -146,7 +146,7 @@
     <ClCompile Include="default.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matrices.cpp" />
-    <ClCompile Include="resources.cpp" />
+    <ClCompile Include="code_snippets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="coursera.h" />

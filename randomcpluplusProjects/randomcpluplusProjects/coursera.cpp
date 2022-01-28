@@ -1,8 +1,8 @@
-//Islem_Mansri_23/01/2022
-/*week3 coursera exo2*/
+
 #include "coursera.h"
 
-
+//Islem_Mansri_23/01/2022
+/*week3 coursera exo2*/
 void LotkaVolterra_model()
 {
 	// Réduire le format d'affichage
