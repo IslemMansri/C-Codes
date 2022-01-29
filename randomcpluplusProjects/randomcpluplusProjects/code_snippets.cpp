@@ -1,13 +1,11 @@
-/*Resourcesand_Code_Snippets*/
+/*Resources_and_Code_Snippets*/
 /***************************/
-
+//	https://pastebin.com/QYWkRRxD
+//
 /*	cin.ignore();
 	cin.get();
 	system("pause");
 */
-
-
-
 
 
 /*Code Snippets*/
@@ -56,8 +54,8 @@ int main()
 */
 
 
-/*
 ////SAD of a frame final version:
+/*
 #include <iostream>
 #include <vector>
 #include "matrices.h"
@@ -122,8 +120,8 @@ int main()
 }*/
 
 
-/*
 //SAD of a frame first attemt:
+/*
 #include <iostream>
 #include <vector>
 #include "matrices.h"
